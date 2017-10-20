@@ -1,15 +1,29 @@
 
-[jcommander简化Java命令](http://jcommander.org/)
+### 使用方式
 
-[Apache Commons IO](https://mvnrepository.com/artifact/commons-io/commons-io)
+生成jar然后通过Java命令生成或者读取渠道包。
+
+`ChannelRead`可以用于Android工程依赖。
+
+读取渠道：
+
+`java -jar xx.jar -r [apkpath]`
 
 
-1. [zip 文件格式](https://en.wikipedia.org/wiki/Zip_(file_format))
+写入渠道：
 
-2. zip解压原理
+`java -jar xx.jar -w [apkpath] -c [channel list txt] -o [result dir] `
 
-3. apk文件格式
 
-4. apk文件签名原理
+详细的请参考工程源码。
 
-5. 渠道号写入原理
+### 编译工具
+
+IDEA
+
+### 参考文献
+
+[apksig源码](https://android.googlesource.com/platform/tools/apksig/)
+
+[v2 signature 官方解释](https://source.android.com/security/apksigning/v2)
+
