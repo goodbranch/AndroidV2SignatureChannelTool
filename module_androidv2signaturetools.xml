@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_androidv2signaturetools" default="compile.module.androidv2signaturetools">
+  <dirname property="module.androidv2signaturetools.basedir" file="${ant.file.module_androidv2signaturetools}"/>
+  
+  <property name="module.jdk.home.androidv2signaturetools" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.androidv2signaturetools" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.androidv2signaturetools" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.androidv2signaturetools" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="androidv2signaturetools.output.dir" value="${module.androidv2signaturetools.basedir}/out/production/AndroidV2SignatureTools"/>
+  <property name="androidv2signaturetools.testoutput.dir" value="${module.androidv2signaturetools.basedir}/out/test/AndroidV2SignatureTools"/>
+  
+  <path id="androidv2signaturetools.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androidv2signaturetools.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidv2signaturetools}"/>
+    <pathelement location="${channelread_main.output.dir}"/>
+    <pathelement location="${channelwrite.output.dir}"/>
+    <pathelement location="${channelwrite_main.output.dir}"/>
+    
+  </path>
+  
+  <path id="androidv2signaturetools.runtime.production.module.classpath">
+    <pathelement location="${androidv2signaturetools.output.dir}"/>
+    <path refid="channelread_main.runtime.production.module.classpath"/>
+    <path refid="channelwrite.runtime.production.module.classpath"/>
+    <path refid="channelwrite_main.runtime.production.module.classpath"/>
+    
+  </path>
+  
+  <path id="androidv2signaturetools.module.classpath">
+    <path refid="${module.jdk.classpath.androidv2signaturetools}"/>
+    <pathelement location="${androidv2signaturetools.output.dir}"/>
+    <pathelement location="${channelread_main.output.dir}"/>
+    <pathelement location="${channelwrite.testoutput.dir}"/>
+    <pathelement location="${channelwrite.output.dir}"/>
+    <pathelement location="${channelwrite_main.output.dir}"/>
+    
+  </path>
+  
+  <path id="androidv2signaturetools.runtime.module.classpath">
+    <pathelement location="${androidv2signaturetools.testoutput.dir}"/>
+    <pathelement location="${androidv2signaturetools.output.dir}"/>
+    <path refid="channelread_main.runtime.module.classpath"/>
+    <path refid="channelwrite.runtime.module.classpath"/>
+    <path refid="channelwrite_main.runtime.module.classpath"/>
+    
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androidv2signaturetools">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androidv2signaturetools">
+    <patternset refid="excluded.from.module.androidv2signaturetools"/>
+  </patternset>
+  
+  <path id="androidv2signaturetools.module.sourcepath">
+    <dirset dir="${module.androidv2signaturetools.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.androidv2signaturetools" depends="compile.module.androidv2signaturetools.production,compile.module.androidv2signaturetools.tests" description="Compile module AndroidV2SignatureTools"/>
+  
+  <target name="compile.module.androidv2signaturetools.production" depends="register.custom.compilers,compile.module.channelread_main,compile.module.channelwrite,compile.module.channelwrite_main" description="Compile module AndroidV2SignatureTools; production classes">
+    <mkdir dir="${androidv2signaturetools.output.dir}"/>
+    <javac2 destdir="${androidv2signaturetools.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidv2signaturetools}/javac">
+      <compilerarg line="${compiler.args.androidv2signaturetools}"/>
+      <bootclasspath refid="androidv2signaturetools.module.bootclasspath"/>
+      <classpath refid="androidv2signaturetools.module.production.classpath"/>
+      <src refid="androidv2signaturetools.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidv2signaturetools"/>
+    </javac2>
+    
+    <copy todir="${androidv2signaturetools.output.dir}">
+      <fileset dir="${module.androidv2signaturetools.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.androidv2signaturetools.tests" depends="register.custom.compilers,compile.module.androidv2signaturetools.production" description="compile module AndroidV2SignatureTools; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.androidv2signaturetools" description="cleanup module">
+    <delete dir="${androidv2signaturetools.output.dir}"/>
+    <delete dir="${androidv2signaturetools.testoutput.dir}"/>
+  </target>
+</project>
