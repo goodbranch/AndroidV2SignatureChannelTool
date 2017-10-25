@@ -379,16 +379,8 @@ public class ApkUtils {
     public static void outputChannelApk(ByteBuffer apk, String inputApkFile, String outputApkDir, String channelName) throws IOException {
 
 
-        File outDir = new File(outputApkDir);
-        if (!outDir.isDirectory()) {
-            outDir.mkdirs();
-        }
-
         File apkFile = new File(inputApkFile);
         String name = apkFile.getName();
-        if (StringUtil.isEmpty(outputApkDir)) {
-            outputApkDir = apkFile.getParent();
-        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = format.format(new Date());
         if (name.endsWith(".apk")) {
@@ -397,7 +389,7 @@ public class ApkUtils {
         }
         name += "-" + channelName + "-" + date + ".apk";
 
-
+        Log.log("output: " + (outputApkDir + name));
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(outputApkDir + name);
             fileOutputStream.write(apk.array());
