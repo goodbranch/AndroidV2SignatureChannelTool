@@ -15,7 +15,7 @@
 `java -jar xx.jar -w [apkpath] -c [channel list txt] -o [result dir] `
 
 
-详细的请参考工程源码。可自行生成jar或者使用[ChannelJar](AndroidV2SignatureChannelTool.jar)
+详细的请参考工程源码。可自行生成jar或者使用`Release`中版本
 
 
 ### 编译工具
